@@ -9,10 +9,10 @@ public class QuickSort {
     public static void main(String[] args) {
         array = ArrayGenerator.generate(arrayLength);
         print();
-        check();
+        System.out.println("Sorted " + check());
         sort(0, arrayLength - 1);
         print();
-        check();
+        System.out.println("Sorted " + check());
     }
 
     private static void sort(int startIndex, int endIndex) {
@@ -50,16 +50,12 @@ public class QuickSort {
         System.out.println();
     }
 
-    private static void check() {
-        boolean sorted = false;
+    private static boolean check() {
         for (int i = 0; i < arrayLength - 1; i++) {
             if (array[i] > array[i + 1]) {
-                sorted = false;
-                break;
-            } else {
-                sorted = true;
+                return false;
             }
         }
-        System.out.println("Sorted " + sorted);
+        return true;
     }
 }
