@@ -50,15 +50,14 @@ public class QuickSort {
     }
 
     private static void printArray(int[] array) {
-        if (ifSorted(array)) {
+        if (isSorted(array)) {
             System.out.println("Sorted array:\n" + Arrays.toString(array) + "\n");
         } else {
             System.out.println("Unsorted array:\n" + Arrays.toString(array));
         }
     }
 
-    // returns true if array is sorted, and false if unsorted
-    private static boolean ifSorted(int[] array) {
+    private static boolean isSorted(int[] array) {
         for (int i = 0; i < array.length - 1; i++) {
             if (array[i] > array[i + 1]) {
                 return false;
