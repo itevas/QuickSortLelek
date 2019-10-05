@@ -1,16 +1,24 @@
 package com.lelek;
 
+import java.util.Arrays;
+
 public class QuickSort {
 
-    private static final int ARRAY_LENGTH = 10;
+    private static final int ARRAY_LENGTH = 20;
+    private static final boolean UNIQUE = true;
+    private static final boolean NOT_UNIQUE = false;
 
     public static void main(String[] args) {
-        int [] array = ArrayGenerator.generate(ARRAY_LENGTH);
-        print(array);
-        System.out.println("Sorted " + checkIfSorted(array));
-        sort(array, 0, array.length - 1);
-        print(array);
-        System.out.println("Sorted " + checkIfSorted(array));
+        int[] uniqueNumbersArray = ArrayGenerator.generate(ARRAY_LENGTH, UNIQUE);
+        int[] notUniqueNumbersArray = ArrayGenerator.generate(ARRAY_LENGTH, NOT_UNIQUE);
+
+        printArray(uniqueNumbersArray);
+        sort(uniqueNumbersArray, 0, uniqueNumbersArray.length - 1);
+        printArray(uniqueNumbersArray);
+
+        printArray(notUniqueNumbersArray);
+        sort(notUniqueNumbersArray, 0, notUniqueNumbersArray.length - 1);
+        printArray(notUniqueNumbersArray);
     }
 
     private static void sort(int[] array, int startIndex, int endIndex) {
@@ -41,14 +49,16 @@ public class QuickSort {
         return divisionIndex;
     }
 
-    private static void print(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            System.out.print(array[i] + " ");
+    private static void printArray(int[] array) {
+        if (ifSorted(array)) {
+            System.out.println("Sorted array:\n" + Arrays.toString(array) + "\n");
+        } else {
+            System.out.println("Unsorted array:\n" + Arrays.toString(array));
         }
-        System.out.println();
     }
 
-    private static boolean checkIfSorted(int[] array) {
+    // returns true if array is sorted, and false if unsorted
+    private static boolean ifSorted(int[] array) {
         for (int i = 0; i < array.length - 1; i++) {
             if (array[i] > array[i + 1]) {
                 return false;
